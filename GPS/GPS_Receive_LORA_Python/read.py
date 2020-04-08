@@ -5,7 +5,8 @@ import serial
 import time
 import struct # Used for bin to float
 
-# Check current connected serial ports ******************************************************************
+# CHECK CURRENT USED USB PORT ON NANO ******************************************************************
+"""
 def serial_ports():
     # Lists serial port names
     #   :raises EnvironmentError:
@@ -33,12 +34,15 @@ def serial_ports():
     return result
 
 
-#if __name__ == '__main__':
-#    print(serial_ports())
+if __name__ == '__main__':
+    print(serial_ports())
+"""
+# END ******************************************************************
 
-# *******************************************************************************************************
+# READING FUNCTION *************************************************************************************
 BAUDRATE = 9600
-LoraSerial = serial.Serial('COM4', baudrate = BAUDRATE)
+#LoraSerial = serial.Serial('COM4', baudrate = BAUDRATE)
+LoraSerial = serial.Serial('/dev/ttyUSB1', baudrate = BAUDRATE)
 LoraSerial.timeout = 1  # set read timeout
 
 def bin_to_float(bin_32): # 32 Bit IEEE 754 Converter
@@ -108,3 +112,4 @@ if LoraSerial.is_open:
 else:
     print('Serial not open')
 LoraSerial.close()  # close z1serial if z1serial is open.
+
